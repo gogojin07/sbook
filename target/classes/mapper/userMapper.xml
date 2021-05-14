@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 회원관련 sql문 작성 -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- <mapper namespace="memberMapper"> <select id="getLoginResult" parameterType="com.board.icia.bean.Member" 
+	resultType="boolean"> SELECT COUNT(*) FROM MEMBER WHERE ID=#{id} AND PW=#{pw} 
+	</select> </mapper> -->
+<!-- 1.parameterType에 1개의 Type만 온다. Type이 여러개인 경우는 생략할 것. 
+     2.parameterType이 bean(DTO)인 경우 #{필드명} ->'문자열', 100 
+     3.parameterType이 map<key,value>인 경우 #{key} 
+	 4.parameterType이 변수인 경우 #{변수명} 
+	 5.1개 또는 그이상의 레코드를 검색할경우 resultType='bean타입'만 명시
+	 6.#{}: 문자열인 경우 ''(문자열)로 변환
+	 7.${}: 문자열 변환없이 문자 그대로 입력(예, 컬럼명)
+ -->
+<mapper namespace="com.spring.sb.IUserDao">
+	<!-- 
+	<select id="getLoginResult"
+		parameterType="com.spring.sb.bean.User" resultType="boolean">
+		SELECT COUNT(*) FROM MEMBER WHERE ID=#{M_id} AND PW=#{M_pw}
+	</select>
+ -->
+ <!-- 
+	<select id="access" resultType="boolean">
+		SELECT COUNT(*) FROM M WHERE
+		M_ID=#{m_id} AND M_PW=#{m_pw}
+	</select>
+ -->
+ <!-- 	
+	<select id="getMemberInfo" resultType="member">
+		SELECT * FROM MINFO WHERE M_ID=#{m_id}
+	</select>
+ -->
+ <!-- 
+	<insert id="userJoin" parameterType="user">
+		INSERT INTO SBUSER
+		VALUES(#{id},#{pw},#{email},#{id}",#{birth},#{nickname},#{birthopen},#{emailopen},default)
+	</insert>
+	 -->
+<!-- 
+	<select id="getSecurityPwd" parameterType="String"
+		resultType="String">
+		SELECT M_PW FROM M WHERE M_ID=#{id}
+	</select>
+ -->
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

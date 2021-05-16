@@ -47,9 +47,9 @@
 
 	</div>
 
-	<%-- <div>
+	 <div>
 		<jsp:include page="main/menu.jsp" />
-	</div> --%>
+	</div> 
 <center>
 	<div id="main">
 		<jsp:include page="<%=frm%>"/>

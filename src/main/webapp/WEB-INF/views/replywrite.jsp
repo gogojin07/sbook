@@ -52,5 +52,54 @@
 		</c:forEach>
 	</table>
 
+<script type="text/javascript">
+function replyInsert(bNum){
+	console.log("bNum=",bNum);
+	let obj=$('#rFrm').serializeObject();//폼의 모든 데이터를 js객체로 변환
+	obj.r_bnum=bNum;   //객체에 원글번호 추가
+	
+	let json=JSON.stringify(obj);  //obj--->json
+	$.ajax({
+		type:'post', //json일때는 post
+		url: 'rest/replyinsert',  //'list/member/10','list/board/10'
+		//1.get: 쿼리스트링(주소창 노출)
+		// post: urlencoded 방식 
+		//data: {r_bnum:bNum, r_contents:$('#r_contents').val()},
+		//data: $('#rFrm').serialize(), //폼전체 데이터 전송 
+		//data: obj,
+		//2.json 을 서버로 넘김(서버에서 @RequestBody 받아야 함.)
+		data:json,
+		//쿼리스트링 또는 urlencoded 방식이 아닌 json형식을 서버에 전송할께...
+		contentType:"application/json; charset=UTF-8", 		
+		dataType:'json', 
+		success:function(data,status,xhr){
+			console.log(data);  //출력 확인
+			//댓글 리스트 출력하세요..
+			let rlist='';
+			/* for(var i=0;i<data.length;i++){
+				rlist+='<tr height="25" align="center">'
+				+'<td width="100">'+data[i].r_id+'</td>'
+				+'<td width="200">'+data[i].r_contents+'</td>'
+				+'<td width="200">'+data[i].r_date+'</td></tr>';
+			} */
+			$.each(data.rList, function(i,reply){
+				console.log(reply);
+				rlist+='<tr height="25" align="center">'
+					+'<td width="100">'+reply.r_id+'</td>'
+					+'<td width="200">'+reply.r_contents+'</td>'
+					+'<td width="200">'+reply.r_date+'</td></tr>';
+			});
+			$('#rTable').html(rlist);
+			$('#r_contents').val('');
+			$('#r_contents').focusin();
+		},
+		error:(err)=>{console.log(err); 
+		              console.log(err.responseText); //responseEntity사용시 출력메세지
+		             }
+	});	//ajax End
+}//replyInsert End
+
+</script>
+
 </body>
 </html>

@@ -66,7 +66,7 @@
 			<td colspan="2" align="center" width="50%"><button type="submit" class="btn btn-primary" id="log"><h4 id="ww">로그인</h4></button></td>
 		</tr>
 		<tr>
-			<td colspan="2" align="center"><a href="./join">회원가입&nbspㅣ&nbsp</a><a href="./idfind">아이디찾기&nbspㅣ&nbsp</a><a href="./pwfind">비밀번호찾기</td>
+			<td colspan="2" align="center"><a href="./join">회원가입&nbspㅣ&nbsp</a><a href="./idfindfrm">아이디찾기&nbspㅣ&nbsp</a><a href="./pwfindfrm">비밀번호찾기</td>
 		</tr> 
 		<tr>	
 		</tr>
@@ -75,7 +75,7 @@
 
 	
 	<div id="ajax2"></div> <!--//붙여넣을 위치 //-->
-<a href="#" onclick="ajax_load_contents('/join.jsp','ajax2');return false;" class="button default">html 파일 내용 삽입하기</a>
+
 </form>
 
 </body>

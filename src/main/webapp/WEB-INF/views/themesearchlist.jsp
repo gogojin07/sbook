@@ -73,9 +73,9 @@ html, body {
 
 		</c:forEach>
 	</table>
-
-
-
+<c:forEach var="guestbook" items="${gList}">
+<div><a href="index?frm=guestList.jsp&id=${id}&guestno=${guestbook.guestno}"><i class="fas fa-book fa-5x"></i><br>방명록</a> </div>
+</c:forEach>
 
 </body>
 <script>

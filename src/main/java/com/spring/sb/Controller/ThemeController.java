@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.sb.Bean.Guest;
+import com.spring.sb.Bean.Guestbook;
 import com.spring.sb.Bean.Page;
 import com.spring.sb.Bean.Reply;
 import com.spring.sb.Bean.Theme;
@@ -49,7 +50,7 @@ public class ThemeController {
 	// 로그인 후 첫화면
 	@GetMapping(value = "/index")
 	public ModelAndView index(@RequestParam("frm") String frm, Integer pageNum, HttpSession session, User ub,
-			Theme tb, Integer themeNo) {
+			Theme tb, Integer themeNo, Guestbook gb, Guest g) {
 
 		String view = null;
 		System.out.println(frm);
@@ -84,7 +85,7 @@ public class ThemeController {
 			//검색
 		case "searchfrm.jsp":
 			mav = um.getsearchinfo(ub);
-			System.out.println("검색결과" + ub);
+			System.out.println("검색결과1" + ub);
 			break;
 			//검색후화면
 		case "themesearchlist.jsp":
@@ -113,7 +114,7 @@ public class ThemeController {
 		break;
 		case "guestList.jsp" :
 			System.out.println("화긴");
-			mav=gm.getgList(session);
+			mav=gm.getgList(session,gb);
 			break;
 
 		}

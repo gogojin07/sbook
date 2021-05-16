@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.sb.Bean.Guest;
+import com.spring.sb.Bean.Guestbook;
 import com.spring.sb.Dao.IGuestDao;
 @Service
 public class GuestMM {
@@ -18,6 +19,7 @@ public class GuestMM {
 	ModelAndView mav;
 	public ModelAndView g_Insert(Guest guest) {
 		mav = new ModelAndView();
+		System.out.println(guest);
 		String view = null;
 		System.out.println("service"+guest);
 		
@@ -43,15 +45,18 @@ public class GuestMM {
 		return gue;
 	}
 
-	public ModelAndView getgList(HttpSession session) {
+	public ModelAndView getgList(HttpSession session, Guestbook gb) {
 		mav = new ModelAndView();
 		String view = null;
 		List<Guest> gList = null;
-		//System.out.println(themeNo);
-		String id = (String) session.getAttribute("id");
-		System.out.println("아이디인가효" + id);
-		gList=gDao.getGuestList(id);
+		int gue =gb.getGuestno();
+		System.out.println("gue"+gue);
+		//String id = (String) session.getAttribute("id");
+		//String id= ;
+		//System.out.println("아이디인가효" + id);
+		gList=gDao.getGuestList(gue);
 		System.out.println("방명록 확인:"+gList);
+		mav.addObject("gb", gb);
 		mav.addObject("gList", gList);
 		view="index";
 		mav.setViewName(view);

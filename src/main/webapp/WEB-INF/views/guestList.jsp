@@ -17,7 +17,7 @@
 	<form action="glist" method="get">
 		<table width="300" height="100" >
 		<tr>
-			<td align="center"><a href="index?frm=Guestwrite.jsp"><button type="button">글쓰기</button></a></td>
+			<td align="center"><a href="index?frm=Guestwrite.jsp&guestno=${gb.guestno}"><button type="button">글쓰기</button></a></td>
 		</tr>
 		<tr>
 		<td>

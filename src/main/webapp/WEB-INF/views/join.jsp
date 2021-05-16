@@ -30,7 +30,7 @@
 					}
 				}
 			})
-		});
+		})
 		$(document).ready(function() {
 			// 취소
 			$(".back").on("click", function() {

@@ -15,7 +15,7 @@
 			<%-- <c:forEach var="theme" items="${tList}"> --%>
 
 			<tr>
-				<td class="tg-ng7p" rowspan="6"><span id="colorB"><i id="book" class="fas fa-book fa-5x"></i><button onclick="myFunction()">적용</button></span></td>
+				<td class="tg-ng7p" rowspan="6"><span id="colorB"><i id="book" class="fas fa-book fa-5x"></i></span></td>
 				<td class="tg-ng7p">제목 : <input type=text name="themename">
 				</td>
 			</tr>
@@ -38,7 +38,7 @@
 
 			<%-- </c:forEach> --%>
 		</table>
-		<br /> <input type="submit" value="등록"> <a
+		<br /><button onclick="myFunction()" type="submit">적용</button> <a
 			href="/sb/index">돌아가기</a>
 	</form>
 </body>

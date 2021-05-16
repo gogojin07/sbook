@@ -26,19 +26,7 @@ html, body {
 	height: 200px;
 	width: 200px;
 }
-/* .book{
- position: relative;
- float: left;
- }
- .bookcover{
-   position: relative;
-   z-index:1;
-   
- 
- }
- .booktext{
-   position: relative;
-   } */
+
 </style>
 
 
@@ -61,7 +49,7 @@ html, body {
 		
 		<td align="center" class="font" width="100" height="120"><a style="color: ${theme.color}"
 			href="index?frm=pageview.jsp&themeNo=${theme.themeNo}"
-			onclick="articleView(${theme.themeNo})"><i
+			id="submit"><i
 				class="fas fa-book fa-5x"></i><br> ${theme.themename}</a></td>
 		<c:if test="${i%j == j-1 }">
 			</tr>
@@ -70,7 +58,12 @@ html, body {
 
 
 	</c:forEach>
+	
+	
 </table>
+<c:forEach var="guestbook" items="${gList}">
+ <a href="index?frm=guestList.jsp&guestno=${guestbook.guestno}"><i class="fas fa-book fa-5x"></i><br>방명록</a>
+</c:forEach>
 
 
 

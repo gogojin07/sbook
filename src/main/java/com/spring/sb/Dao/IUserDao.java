@@ -36,11 +36,24 @@ public interface IUserDao {
 	@Update("update sbuser set profile=#{profile}, nickname=#{nickname}, emailopen=#{emailopen}, birthopen=#{birthopen} where id=#{id}")
 	boolean userupdate(User ub);
 	
-	@Select("select * from sbuser where email=#{email} and birth=#{birth}")
-    User userIdFind(@Param("email") String email, @Param("birth") String birth);
-
-    @Select("select * from sbuser where id=#{id} and email=#{email}")
-    User userPwFind(@Param("id") String id, @Param("email") String email);
+	/*
+	 * @Select("select * from sbuser where email=#{email} and birth=#{birth}") User
+	 * userIdFind(@Param("email") String email, @Param("birth") String birth);
+	 * 
+	 * 
+	 * @Select("select * from sbuser where id=#{id} and email=#{email}") User
+	 * userPwFind(@Param("id") String id, @Param("email") String email);
+	 */
+	/*
+	 * @Select("select id from sbuser where email=#{email} and birth=#{birth}")
+	 * String findUserIdByEmailAndBirth(@Param("email") String
+	 * email, @Param("birth")
+	 */
+	@Select("SELECT ID FROM SBUSER WHERE EMAIL = #{email} AND BIRTH = #{birth}")
+	String selectUserIdByEmailAndBirth(@Param("email") String email, @Param("birth") String birth);
+	    
+    @Select("SELECT PW FROM SBUSER WHERE ID = #{id} AND EMAIL = #{email}")
+	String selectUserPwByIdAndEmail(@Param("id") String id, @Param("email") String email);
     
     @Delete("delete from sbuser where id=#{id}")
 	boolean userdelete(User ub);

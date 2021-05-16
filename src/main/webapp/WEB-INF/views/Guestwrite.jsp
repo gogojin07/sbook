@@ -49,18 +49,20 @@ margin-left :40%;
 <body>
 	<h2>방명록</h2>
 	<form action="g_Insert" method="post">
+			<input type="hidden" name="guestno" value="${guest.guestno}">
 			<input type="hidden" name="id" id="id" value="${sessionScope.id}">
 			<input type="hidden" name="nickname" value="${sessionScope.nickname}">
 			<input type="hidden" name="g_date" class="form-control"
 				value="<%=sf.format(nowTime)%>">
+			
 			<h4><%=sf.format(nowTime)%></h4>
 			<%-- <select name="themeno" id="themeno" class="form-control">
 				<c:forEach var="theme" items="${tList}">
 					<option value="${theme.themeNo}"></option>
 				</c:forEach>
 			</select> --%> 
-			<input type="text" name="themename" class="form-control" id="themename" placeholder="이름">
-			<input type="text" name="guestno" id="guestno" class="form-control" placeholder="번호"><br>
+			<!-- <input type="text" name="themename" class="form-control" id="themename" placeholder="이름"> -->
+		<!-- 	<input type="text" name="guestno" id="guestno" class="form-control" placeholder="번호"><br> -->
 			<br>
 			<textarea name="guestcontent" id="guestcontent"
 				placeholder="내용을 입력해주세요" class="form-control"></textarea><br>

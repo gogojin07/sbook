@@ -66,8 +66,8 @@ html, body {
 <body>
 
 	<table border="1">
-		<c:forEach var="page" items="${pList}">
-			<form action="pagedelete" method="Post">
+		<c:forEach var="page" items="${pList}" >
+			<form action="pagedelete" method="Post" >
 
 				<tr>
 					<td valign="top" width="900" height="300">

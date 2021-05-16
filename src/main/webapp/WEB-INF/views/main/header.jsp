@@ -6,9 +6,19 @@
 	href="https://fonts.googleapis.com/css?family=Neucha|Cabin+Sketch&display=swap">
 <link rel="stylesheet" type="text/css"
 	href="${path}/resources/css/bootstrap.css" />
+<link rel="icon" type="image/png"
+	href="${path}/resources/img/sbook1.png" /> 
+<style type="text/css">
+
+img{
+   width : 150px;
+   height: 110px;
+}
+</style>
+
 </head>
 <body>
-	<%-- <div class="head" align="center">
+	 <div class="head" align="center">
 		
 
 			<table height="100">
@@ -20,11 +30,11 @@
 					<td> ${sessionScope.nickname}</td>
 			</table>
 		
-	</div> --%>
+	</div> 
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+	<%-- <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
 		<!-- <div class="container-fluid"> -->
-			<a class="navbar-brand" href='index?frm=menubar/themelist.jsp'>SBOOK</a>
+			<a class="navbar-brand" href='index?frm=menubar/themelist.jsp'><img src="resources/img/sbook1.png"></a>
 			<!-- <button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarColor01"
 				aria-controls="navbarColor01" aria-expanded="false"
@@ -57,6 +67,6 @@
 				</form>
 			</div>
 		<!-- </div> -->
-	</nav>
+	</nav> --%>
 </body>
 </html>

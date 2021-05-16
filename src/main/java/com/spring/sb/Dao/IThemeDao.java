@@ -39,4 +39,7 @@ public interface IThemeDao {
 	
 	@Delete("delete from theme where themeNo=#{themeNo}")
 	boolean themeDelete(Theme tb);
+
+	@Insert("INSERT INTO theme VALUES(seq_theme.nextval,#{id},'방명록','#000000','on','on','on')")
+	boolean GuestCreate(Theme tb);
 }

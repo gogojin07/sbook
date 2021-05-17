@@ -2,6 +2,7 @@ package com.spring.sb.Dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -9,6 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import com.spring.sb.Bean.Guest;
 import com.spring.sb.Bean.Guestbook;
 import com.spring.sb.Bean.Theme;
+
 
 public interface IGuestDao {
 	
@@ -26,5 +28,8 @@ public interface IGuestDao {
 
 	@Select("select *from guestbook where id=#{id} ")
 	List<Guestbook> getGuestBookList(@Param("id") String id);
+
+	@Delete("delete *from guest where gbnumber=#{gbnumber}")
+	boolean guestDelete(Guest guest);
 	
 }

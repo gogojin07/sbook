@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -38,9 +39,11 @@ public class GuestController {
 		return mav;
 	}
 
-/*	@GetMapping(value="/guestlist")
-	public ModelAndView g_List(int themeNo, HttpSession session) {
-		mav=gm.getgList(themeNo, session);
-		return mav;*/
-	//}
+	@PostMapping(value="guestwritedelete")
+	public ModelAndView guestwritedelete(Guest guest, HttpSession session) {
+		System.out.println("방명록 삭제"+guest);
+		mav=gm.guestwritedelete(guest,session);
+		
+		return mav;
+	}
 }

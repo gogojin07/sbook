@@ -204,6 +204,7 @@ public class UserMM {
 		
 		uDao.replyDelete(ub);
 		uDao.guestDelete(ub);
+		uDao.guestbookDelete(ub);
 		uDao.pageDelete(ub);
 		uDao.themeDelete(ub);
 		uDao.userdelete(ub);

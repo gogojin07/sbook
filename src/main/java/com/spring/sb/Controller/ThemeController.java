@@ -50,7 +50,7 @@ public class ThemeController {
 	// 로그인 후 첫화면
 	@GetMapping(value = "/index")
 	public ModelAndView index(@RequestParam("frm") String frm, Integer pageNum, HttpSession session, User ub,
-			Theme tb, Integer themeNo, Guestbook gb, Guest g) {
+			Theme tb, Integer themeNo, Guestbook gb, Guest g, Page pg) {
 
 		String view = null;
 		System.out.println(frm);
@@ -60,69 +60,84 @@ public class ThemeController {
 			logger.info("메인화면테스트");
 			mav = tm.getThemeList(pageNum, session);
 			break;
-		// 글쓰기
-		/*
-		 * case "writefrm.jsp": logger.info("글쓰기"); mav = tm.getThemeList(pageNum,
-		 * session); mav.addObject(view = "wirtefrm"); break;
-		 */
-		// 수정할 모든 테마 불러오기
+	
+		// 테마리스트
 		case "themeset.jsp":
 			logger.info("테마수정페이지");
 			mav = tm.getThemeList(pageNum, session);
 			mav.addObject(view = "themeset.jsp");
 			break;
+			
 		// 내정보 불러오기
 		case "myinfo.jsp":
 			System.out.println(session.getAttribute("ub"));
 			mav = um.getuserinfo(session);
 			logger.info("내정보보기");
 			break;
+			
 		// 내정보 수정하는페이지 불러오기
 		case "myinfoupdatefrm.jsp":
 			System.out.println("내정보수정페이지");
 			mav = um.getuserinfo(session);
 			break;
+			
 			//검색
 		case "searchfrm.jsp":
 			mav = um.getsearchinfo(ub);
 			System.out.println("검색결과1" + ub);
 			break;
+			
 			//검색후화면
 		case "themesearchlist.jsp":
 			mav = tm.getsearchthemelist(pageNum, session, ub);
 			break;
+			
 		// 테마 업데이트
 		case "themeupdatefrm.jsp":
 			mav = tm.getthemeupdatelist(tb);
 			System.out.println(tb);
 			break;
+			
 		// 페이지보기
 		case "pageview.jsp":
 
 			mav = pm.getPage(themeNo, pageNum);
-
 			System.out.println(themeNo);
-
 			break;
+			
+		// 타유저 글보기
 		case "searchpageview.jsp":
 			mav=pm.getPage(themeNo, pageNum);
-			break;
+			break; 
+			
+			//방명록 쓰기이동
 		case "Guestwrite.jsp" :
 			logger.info("방명록 작성");
 			Guest gt =new Guest();
 			mav.addObject(view = "Guestwrite.jsp");
 		break;
+		
+		//방명록 리스트 확인
 		case "guestList.jsp" :
 			System.out.println("화긴");
 			mav=gm.getgList(session,gb);
 			break;
+			
+			//글수정페이지이동
+		case "pageupdatefrm.jsp": 
+			logger.info("페이지수정페이지"); 
+			System.out.println("화긴");
+			mav = pm.getpageupdate(pg); 
+			System.out.println("수정"+pg); 
+			break;
+			 
 
 		}
 		return mav;
 
 	}
 
-
+	
 	// 테마생성
 	@PostMapping(value = "/themecreate")
 	public ModelAndView themecreate(HttpSession session, Theme tb) {
@@ -181,5 +196,15 @@ public class ThemeController {
 		mav=rm.replyInsert(rb);
 		
 		return mav;
+	}
+	
+	// 글 수정
+	@PostMapping(value = "pageUpdate")
+	public ModelAndView pageUpdate(Page pg) {
+
+		System.out.println("글 수정 시작" + pg);
+		mav = pm.pageUpdate(pg);
+		return mav;
+
 	}
 }

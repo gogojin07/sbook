@@ -81,6 +81,12 @@ html, body {
 				<tr>
 					<td><input type="submit" value="삭제"></td>
 				</tr>
+				</form>
+				<tr>
+				
+					<td><a href="index?frm=pageupdatefrm.jsp&themeNo=${theme.themeNo}&pageNo=${page.pageNo}" > <input type="submit" value="수정"> </a> </td>
+				 
+				</tr>
 		</c:forEach>
 
 

@@ -112,6 +112,32 @@ public class PageMM {
 		return mav;
 	}
 
+	public ModelAndView pageUpdate(Page pg) {
+		mav = new ModelAndView();
+		String view = null;
+		boolean flag;
+		
+		flag = pDao.pageUpdate(pg);
+		
+		if (flag) {
+			view = "redirect:/index?frm=menubar/themelist.jsp";
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
+	public ModelAndView getpageupdate(Page pg) {
+		List<Page> pList =null;
+		String view = null;
+		System.out.println(pg);
+		pList = pDao.getPageupdate(pg);
+		System.out.println(pList);
+		view="index";
+		mav.addObject("pList", pList);
+		mav.setViewName(view);
+		return mav;
+	}
+
 
 
 }

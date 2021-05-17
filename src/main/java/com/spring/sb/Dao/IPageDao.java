@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.spring.sb.Bean.Page;
 import com.spring.sb.Bean.Reply;
@@ -29,4 +30,12 @@ public interface IPageDao {
 
 	@Select("select *from reply where pageNo=#{pageNo}")
 	List<Reply> getReplyList(Integer pageNo);
+
+	//글수정
+	@Update("update page set pagecontent=#{pagecontent}, p_date=#{p_date}, writedate=#{writedate}, pageopen=#{pageopen}, pagesheet=#{pagesheet} where pageNo=#{pageNo}")
+	boolean pageUpdate(Page pg);
+
+	//글 수정 페이지
+	@Select("select*from page where pageNo=#{pageNo}")
+	List<Page> getPageupdate(Page pg);
 }

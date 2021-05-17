@@ -63,4 +63,24 @@ public class GuestMM {
 		return mav;
 	}
 
+	public ModelAndView guestwritedelete(Guest guest, HttpSession session) {
+		String view =null;
+		boolean gdel;
+		System.out.println("확인"+guest);
+		String sd= (String) session.getAttribute("id");
+		System.out.println("sessionid"+sd);
+		String id=guest.getId();
+		System.out.println("id"+id);
+		if(sd.equals(id)) {
+			System.out.println("작성자가 같음");
+			gdel=gDao.guestDelete(guest);
+			view="redirect:/index?frm=guestList.jsp";
+		}else {
+			System.out.println("작성자가 달라요");
+			view="redirect:/index?frm=menubar/themelist.jsp";
+		}
+		mav.setViewName(view);
+		return mav;
+	}
+
 }

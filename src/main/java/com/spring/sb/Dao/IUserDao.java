@@ -65,9 +65,11 @@ public interface IUserDao {
 	boolean replyDelete(User ub);
     @Delete("delete from guest where id=#{id}")
 	boolean guestDelete(User ub);
-    @Select("select count(*) from sbuser where id=#{id}")
-	int idChk(String id);
+    @Delete("delete from guestbook where id=#{id}")
+	boolean guestbookDelete(User ub);
 	
+	@Select("select count(*) from sbuser where id=#{id}")
+	int idChk(String id);
 	
 //	public String getSecurityPwd(String id);
 

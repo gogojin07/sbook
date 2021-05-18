@@ -18,11 +18,11 @@
 
 	<table width="300" height="100">
 		<form action="glist" method="get">
-		<tr>
-			<td align="center"><a
-				href="index?frm=Guestwrite.jsp&guestno=${gb.guestno}"><button
-						type="button">글쓰기</button></a></td>
-		</tr>
+			<tr>
+				<td align="center"><a
+					href="index?frm=Guestwrite.jsp&guestno=${gb.guestno}"><button
+							type="button">글쓰기</button></a></td>
+			</tr>
 		</form>
 
 		<c:forEach var="guest" items="${gList}">
@@ -30,17 +30,27 @@
 				<td><br> <br>${guest.g_date} <br>${guest.guestcontent}
 					<br>${guest.nickname}</td>
 			</tr>
-
+			<form method="post" action="guestwritedelete">
 			<tr>
-				<td>
-					<form method="post" action = "guestwritedelete">
-					<input type="hidden" name="id" value="${guest.id}">
+				
+				<td><input type="hidden" name="id" value="${guest.id}">
 					<input type="hidden" name="gbnumber" value="${guest.gbnumber}">
-						<input type="submit" value="삭제">
-					</form>
-				</td>
-			</tr>
+					<input type="submit" value="삭제"></td>
 
+
+			</tr>
+			</form>
+		
+			<tr>
+
+				<td>
+				<input type="hidden" name="id" value="${guest.id}">
+				<a href="index?frm=guestwriteupdate.jsp&gbnumber=${guest.gbnumber}&id=${guest.id}">
+						<input type="submit" value="수정">
+				</a></td>
+
+			</tr>
+			
 		</c:forEach>
 		<br>
 

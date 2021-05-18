@@ -49,8 +49,8 @@ public class ThemeController {
 
 	// 로그인 후 첫화면
 	@GetMapping(value = "/index")
-	public ModelAndView index(@RequestParam("frm") String frm, Integer pageNum, HttpSession session, User ub,
-			Theme tb, Integer themeNo, Guestbook gb, Guest g, Page pg) {
+	public ModelAndView index(@RequestParam("frm") String frm, Integer pageNum, HttpSession session, User ub, Theme tb,
+			Integer themeNo, Guestbook gb, Guest g, Page pg) {
 
 		String view = null;
 		System.out.println(frm);
@@ -60,84 +60,89 @@ public class ThemeController {
 			logger.info("메인화면테스트");
 			mav = tm.getThemeList(pageNum, session);
 			break;
-	
+
 		// 테마리스트
 		case "themeset.jsp":
 			logger.info("테마수정페이지");
 			mav = tm.getThemeList(pageNum, session);
 			mav.addObject(view = "themeset.jsp");
 			break;
-			
+
 		// 내정보 불러오기
 		case "myinfo.jsp":
 			System.out.println(session.getAttribute("ub"));
 			mav = um.getuserinfo(session);
 			logger.info("내정보보기");
 			break;
-			
+
 		// 내정보 수정하는페이지 불러오기
 		case "myinfoupdatefrm.jsp":
 			System.out.println("내정보수정페이지");
 			mav = um.getuserinfo(session);
 			break;
-			
-			//검색
+
+		// 검색
 		case "searchfrm.jsp":
 			mav = um.getsearchinfo(ub);
 			System.out.println("검색결과1" + ub);
 			break;
-			
-			//검색후화면
+
+		// 검색후화면
 		case "themesearchlist.jsp":
 			mav = tm.getsearchthemelist(pageNum, session, ub);
 			break;
-			
+
 		// 테마 업데이트
 		case "themeupdatefrm.jsp":
 			mav = tm.getthemeupdatelist(tb);
 			System.out.println(tb);
 			break;
-			
+
 		// 페이지보기
 		case "pageview.jsp":
 
 			mav = pm.getPage(themeNo, pageNum);
 			System.out.println(themeNo);
 			break;
-			
+
 		// 타유저 글보기
 		case "searchpageview.jsp":
-			mav=pm.getPage(themeNo, pageNum);
-			break; 
-			
-			//방명록 쓰기이동
-		case "Guestwrite.jsp" :
+			mav = pm.getPage(themeNo, pageNum);
+			break;
+
+		// 방명록 쓰기이동
+		case "Guestwrite.jsp":
 			logger.info("방명록 작성");
-			Guest gt =new Guest();
+			Guest gt = new Guest();
 			mav.addObject(view = "Guestwrite.jsp");
-		break;
-		
-		//방명록 리스트 확인
-		case "guestList.jsp" :
-			System.out.println("화긴");
-			mav=gm.getgList(session,gb);
 			break;
-			
-			//글수정페이지이동
-		case "pageupdatefrm.jsp": 
-			logger.info("페이지수정페이지"); 
+
+		// 방명록 리스트 확인
+		case "guestList.jsp":
 			System.out.println("화긴");
-			mav = pm.getpageupdate(pg); 
-			System.out.println("수정"+pg); 
+			mav = gm.getgList(session, gb);
 			break;
-			 
+
+		// 글수정페이지이동
+		case "pageupdatefrm.jsp":
+			logger.info("페이지수정페이지");
+			System.out.println("화긴");
+			mav = pm.getpageupdate(pg);
+			System.out.println("수정" + pg);
+			break;
+		// 방명록글수정페이지이동
+		case "guestwriteupdate.jsp":
+			logger.info("방명록수정페이지");
+			System.out.println("화긴방명록 수정");
+			mav = gm.getguestupdate(g,session);
+			System.out.println("수정" + g);
+			break;
 
 		}
 		return mav;
 
 	}
 
-	
 	// 테마생성
 	@PostMapping(value = "/themecreate")
 	public ModelAndView themecreate(HttpSession session, Theme tb) {
@@ -157,6 +162,7 @@ public class ThemeController {
 		mav = pm.create(page);
 		return mav;
 	}
+
 	// 테마업데이트
 	@PostMapping(value = "themeupdate")
 	public ModelAndView themeupdate(Theme tb) {
@@ -166,38 +172,42 @@ public class ThemeController {
 		return mav;
 
 	}
-	//테마삭제
-	@PostMapping(value ="themedelete")
+
+	// 테마삭제
+	@PostMapping(value = "themedelete")
 	public ModelAndView themedelete(Theme tb) {
 		System.out.println("테마삭제시작");
-		mav=tm.themedelete(tb);
+		mav = tm.themedelete(tb);
 		return mav;
 	}
-	//페이지삭제
-	@PostMapping(value="pagedelete")
+
+	// 페이지삭제
+	@PostMapping(value = "pagedelete")
 	public ModelAndView pagedelete(Page pb) {
 		System.out.println("페이지삭제시작");
-		mav=pm.pagedelete(pb);
-		
+		mav = pm.pagedelete(pb);
+
 		return mav;
 	}
+
 //	댓글보기
-	@RequestMapping(value = "/content", method= RequestMethod.GET)
+	@RequestMapping(value = "/content", method = RequestMethod.GET)
 	public ModelAndView getReply(Integer pageNo, HttpSession session) {
-		mav=pm.getReply(pageNo,session);
+		mav = pm.getReply(pageNo, session);
 		return mav;
 	}
-	//댓글 쓰기
+
+	// 댓글 쓰기
 	@PostMapping(value = "replyInsert")
-	public ModelAndView replyInsert(Reply rb){
-		String view=null;
+	public ModelAndView replyInsert(Reply rb) {
+		String view = null;
 		System.out.println(rb);
 
-		mav=rm.replyInsert(rb);
-		
+		mav = rm.replyInsert(rb);
+
 		return mav;
 	}
-	
+
 	// 글 수정
 	@PostMapping(value = "pageUpdate")
 	public ModelAndView pageUpdate(Page pg) {
@@ -207,4 +217,14 @@ public class ThemeController {
 		return mav;
 
 	}
+	
+	// 방명록 수정
+		@PostMapping(value = "guestupdate")
+		public ModelAndView guestupdate(Guest guest) {
+
+			System.out.println("방명록 수정 시작" + guest);
+			mav = gm.guestupdate(guest);
+			return mav;
+
+		}
 }

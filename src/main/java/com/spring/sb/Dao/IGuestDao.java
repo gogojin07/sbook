@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.spring.sb.Bean.Guest;
 import com.spring.sb.Bean.Guestbook;
@@ -29,7 +30,16 @@ public interface IGuestDao {
 	@Select("select *from guestbook where id=#{id} ")
 	List<Guestbook> getGuestBookList(@Param("id") String id);
 
-	@Delete("delete *from guest where gbnumber=#{gbnumber}")
+	//방명록 삭제
+	@Delete("delete from guest where id=#{id} and gbnumber=#{gbnumber}")
 	boolean guestDelete(Guest guest);
+
+	//방명록 수정 페이지
+	@Select("select*from guest where gbnumber=#{gbnumber}")
+	List<Guest>getGuestupdate(Guest g);
+
+	//방명록 수정
+	@Update("update guest set guestcontent=#{guestcontent} where gbnumber=#{gbnumber}")
+	boolean guestUpdate(Guest guest);
 	
 }
